@@ -39,7 +39,7 @@ const main = async () => {
     {
       $unset: {
         _coffeeId: 1,
-        _variety: 1
+        _variety: 1,
       }
     }
   );

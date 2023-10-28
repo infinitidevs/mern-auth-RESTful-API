@@ -1,10 +1,10 @@
 require('dotenv').config();
-require('./config/db');
+require('./src/config/db');
 const express = require('express');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
-const router = require('./api/routes/index');
-const { setError } = require('./config/error');
+const router = require('./src/api/routes/index');
+const { setError } = require('./src/config/error');
 
 const app = express();
 app.use(express.json({ limit: '1mb' }));

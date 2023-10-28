@@ -60,12 +60,13 @@ const createOrUpdateAvatar = async (req, res, next) => {
     const { id } = req.user;
     const { path } = req.file;
     if (req.file) {
+      const oldUser = await User.findById(id);
+      if (oldUser.avatar) {
+        deleteFile(oldUser.avatar);
+      }
       await User.findById(id);
       await User.updateOne({ _id: id }, { avatar: path });
     }
-    const oldUser = await User.findById(id);
-    deleteFile(oldUser.avatar);
-    await User.updateOne({ _id: id }, { avatar: path });
     console.log('>>> Uploaded image');
     res.status(201).json({ data: path });
   } catch (err) {
